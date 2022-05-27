@@ -1,6 +1,5 @@
 {
-    "name": "build_test",
-    "private": true,
+    "name": "vite-react-electron-template",
     "version": "0.0.0",
     "main": "electron/main.js",
     "scripts": {

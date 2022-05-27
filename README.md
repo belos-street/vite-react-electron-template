@@ -8,6 +8,13 @@ electron脚手架
 * Vite 2.9
 * Electron 9
 
+### 使用
+
+```
+pnpm electron:serve   //dev运行
+pnpm eletron:build   //打包
+```
+
 ### 参考
 
 [https://github.com/Kuari/Blog/issues/52](https://)
