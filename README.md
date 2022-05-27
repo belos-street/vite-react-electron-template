@@ -6,7 +6,7 @@ electron脚手架
 
 * React 18
 * Vite 2.9
-* Electron 9
+* Electron 19
 
 ### 使用
 
