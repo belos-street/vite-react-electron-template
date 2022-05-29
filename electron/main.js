@@ -1,10 +1,14 @@
 // electron/main.js
 
 // 控制应用生命周期和创建原生浏览器窗口的模组
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 const NODE_ENV = process.env.NODE_ENV
+
+
+//取消的话则为系统原生菜单
+//require('./menu')
 
 function createWindow() {
     // 创建浏览器窗口
@@ -16,8 +20,6 @@ function createWindow() {
             contextIsolation: false,
             preload: path.join(__dirname, 'preload.js')
         }
-
-
     })
 
     // 加载 index.html
@@ -26,7 +28,7 @@ function createWindow() {
         NODE_ENV === 'development' ?
         'http://localhost:3000' :
         `file://${path.join(__dirname, '../dist/index.html')}`
-    );
+    )
 
     // 打开开发工具
     if (NODE_ENV === "development") {
@@ -56,3 +58,11 @@ app.on('window-all-closed', function() {
 
 // 在这个文件中，你可以包含应用程序剩余的所有部分的代码，
 // 也可以拆分成几个文件，然后用 require 导入。
+
+
+//主线程监听渲染进程的消息
+ipcMain.on('openFile', (_event, filename) => {
+    readFile(path.join(process.cwd(), `/assets/${filename}`), (_e, data) => {
+        _event.reply('fileReply', data.toString())
+    })
+})

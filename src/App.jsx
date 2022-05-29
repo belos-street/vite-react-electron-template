@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const navigate = useNavigate()
   return (
     <div className="App">
       <header className="App-header">
@@ -13,6 +14,10 @@ function App() {
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
+          </button>
+
+          <button type="button" onClick={() => navigate('/app2')}>
+            click to App2
           </button>
         </p>
         <p>
